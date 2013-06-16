@@ -2,12 +2,11 @@
 
 Name:           libserf
 Version:        1.2.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
 Url:            http://code.google.com/p/serf
 Source0:        https://serf.googlecode.com/files/serf-%{version}.tar.bz2
-BuildRequires:  glibc-devel
 BuildRequires:  autoconf
 BuildRequires:  apr-util-devel
 BuildRequires:  apr-devel
@@ -27,12 +26,7 @@ kept to a minimum to provide high performance operation.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       apr-util-devel
-Requires:       apr-devel
-Requires:       krb5-devel
-Requires:       libgssapi-devel
-Requires:       openssl-devel
-Requires:       zlib-devel
+Requires:       apr-devel%{?_isa}
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -46,7 +40,7 @@ sed -i 's|644 $(TARGET_LIB)|755 $(TARGET_LIB)|g' Makefile.in
 autoreconf -fiv
 export CFLAGS="%{optflags}"
 export CXXFLAGS="%{optflags}"
-%configure --with-gssapi=%{_prefix}
+%configure --includedir=%{_includedir}/%{oname}-1 --with-gssapi=%{_prefix}
 make %{?_smp_mflags}
 
 %install
@@ -65,11 +59,14 @@ make check
 %{_libdir}/*.so.*
 
 %files devel
-%{_includedir}/%{oname}*.h
+%{_includedir}/%{oname}-1/
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/%{oname}*.pc
 
 %changelog
+* Mon Jun 17 2013 Christopher Meng <rpm@cicku.me> - 1.2.1-3
+- SPEC cleanup.
+
 * Thu Jun 13 2013 Christopher Meng <rpm@cicku.me> - 1.2.1-2
 - Fix the permission of the library.
 
