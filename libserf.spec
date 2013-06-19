@@ -68,7 +68,7 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/%{oname}*.pc
 
 %changelog
-* Mon Jun 19 2013 Christopher Meng <rpm@cicku.me> - 1.2.1-3
+* Wed Jun 19 2013 Christopher Meng <rpm@cicku.me> - 1.2.1-3
 - Add support for EPEL6.
 
 * Thu Jun 13 2013 Christopher Meng <rpm@cicku.me> - 1.2.1-2
