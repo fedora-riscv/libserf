@@ -16,6 +16,7 @@ BuildRequires:  libgssapi-devel
 BuildRequires:  openssl-devel
 BuildRequires:  pkgconfig
 BuildRequires:  zlib-devel
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 The serf library is a C-based HTTP client library built upon the Apache 
@@ -54,6 +55,9 @@ make check
 
 %postun -p /sbin/ldconfig
 
+%clean
+rm -rf %{buildroot}
+
 %files
 %doc CHANGES LICENSE NOTICE README design-guide.txt
 %{_libdir}/*.so.*
@@ -64,8 +68,8 @@ make check
 %{_libdir}/pkgconfig/%{oname}*.pc
 
 %changelog
-* Mon Jun 17 2013 Christopher Meng <rpm@cicku.me> - 1.2.1-3
-- SPEC cleanup.
+* Mon Jun 19 2013 Christopher Meng <rpm@cicku.me> - 1.2.1-3
+- Add support for EPEL6.
 
 * Thu Jun 13 2013 Christopher Meng <rpm@cicku.me> - 1.2.1-2
 - Fix the permission of the library.
