@@ -1,7 +1,7 @@
 %global oname   serf
 
 Name:           libserf
-Version:        1.3.2
+Version:        1.3.3
 Release:        1%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
@@ -65,6 +65,9 @@ scons %{?_smp_mflags} check
 %{_libdir}/pkgconfig/%{oname}*.pc
 
 %changelog
+* Tue Dec 10 2013 Joe Orton <jorton@redhat.com> - 1.3.3-1
+- update to 1.3.3
+
 * Wed Nov  6 2013 Joe Orton <jorton@redhat.com> - 1.3.2-1
 - update to 1.3.2
 - require krb5-devel for libgssapi (#1027011)
