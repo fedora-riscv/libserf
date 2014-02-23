@@ -1,14 +1,11 @@
-%global oname   serf
-
 Name:           libserf
 Version:        1.3.4
 Release:        1%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
-Url:            http://code.google.com/p/serf
-Source0:        https://serf.googlecode.com/files/serf-%{version}.tar.bz2
-
-BuildRequires:  apr-util-devel, apr-devel, krb5-devel,
+URL:            http://code.google.com/p/serf/
+Source0:        http://serf.googlecode.com/svn/src_releases/serf-%{version}.tar.bz2
+BuildRequires:  apr-devel, apr-util-devel
 BuildRequires:  krb5-devel, openssl-devel, zlib-devel
 BuildRequires:  scons, pkgconfig
 
@@ -24,11 +21,11 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       apr-devel%{?_isa}
 
 %description    devel
-The %{name}-devel package contains libraries and header files for
+This package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%setup -q -n %{oname}-%{version}
+%setup -qn serf-%{version}
 
 # Shared library versioning support in scons is worse than awful...
 # minimally, here fix the soname to match serf-1.2.x.  Minor version
@@ -46,7 +43,7 @@ scons \
 
 %install
 scons install --install-sandbox=%{buildroot}
-find %{buildroot} -name '*.*a' -exec rm -vf {} ';'
+find %{buildroot} -name '*.*a' -delete -print
 
 %check
 scons %{?_smp_mflags} check || true
@@ -56,13 +53,14 @@ scons %{?_smp_mflags} check || true
 %postun -p /sbin/ldconfig
 
 %files
-%doc CHANGES LICENSE NOTICE README design-guide.txt
+%doc LICENSE NOTICE
 %{_libdir}/*.so.*
 
 %files devel
-%{_includedir}/%{oname}-1/
+%doc CHANGES README design-guide.txt
+%{_includedir}/serf-1/
 %{_libdir}/*.so
-%{_libdir}/pkgconfig/%{oname}*.pc
+%{_libdir}/pkgconfig/serf*.pc
 
 %changelog
 * Mon Feb 17 2014 Joe Orton <jorton@redhat.com> - 1.3.4-1
