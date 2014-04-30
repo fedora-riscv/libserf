@@ -1,5 +1,5 @@
 Name:           libserf
-Version:        1.3.4
+Version:        1.3.5
 Release:        1%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
@@ -63,6 +63,9 @@ scons %{?_smp_mflags} check || true
 %{_libdir}/pkgconfig/serf*.pc
 
 %changelog
+* Wed Apr 30 2014 Christopher Meng <rpm@cicku.me> - 1.3.5-1
+- update to 1.3.5
+
 * Mon Feb 17 2014 Joe Orton <jorton@redhat.com> - 1.3.4-1
 - update to 1.3.4
 
