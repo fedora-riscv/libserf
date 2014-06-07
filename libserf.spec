@@ -1,6 +1,6 @@
 Name:           libserf
 Version:        1.3.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
 URL:            http://code.google.com/p/serf/
@@ -63,6 +63,9 @@ scons %{?_smp_mflags} check || true
 %{_libdir}/pkgconfig/serf*.pc
 
 %changelog
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.3.5-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Wed Apr 30 2014 Christopher Meng <rpm@cicku.me> - 1.3.5-1
 - update to 1.3.5
 
