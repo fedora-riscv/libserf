@@ -1,6 +1,6 @@
 Name:           libserf
-Version:        1.3.5
-Release:        2%{?dist}
+Version:        1.3.6
+Release:        1%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
 URL:            http://code.google.com/p/serf/
@@ -63,21 +63,24 @@ scons %{?_smp_mflags} check || true
 %{_libdir}/pkgconfig/serf*.pc
 
 %changelog
+* Tue Jun 17 2014 Christopher Meng <rpm@cicku.me> - 1.3.6-1
+- Update to 1.3.6
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.3.5-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
 * Wed Apr 30 2014 Christopher Meng <rpm@cicku.me> - 1.3.5-1
-- update to 1.3.5
+- Update to 1.3.5
 
 * Mon Feb 17 2014 Joe Orton <jorton@redhat.com> - 1.3.4-1
-- update to 1.3.4
+- Update to 1.3.4
 
 * Tue Dec 10 2013 Joe Orton <jorton@redhat.com> - 1.3.3-1
-- update to 1.3.3
+- Update to 1.3.3
 
 * Wed Nov  6 2013 Joe Orton <jorton@redhat.com> - 1.3.2-1
-- update to 1.3.2
-- require krb5-devel for libgssapi (#1027011)
+- Update to 1.3.2
+- Require krb5-devel for libgssapi (#1027011)
 
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.2.1-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
