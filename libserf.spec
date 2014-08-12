@@ -1,5 +1,5 @@
 Name:           libserf
-Version:        1.3.6
+Version:        1.3.7
 Release:        1%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
@@ -43,6 +43,7 @@ scons \
 
 %install
 scons install --install-sandbox=%{buildroot}
+
 find %{buildroot} -name '*.*a' -delete -print
 
 %check
@@ -63,6 +64,9 @@ scons %{?_smp_mflags} check || true
 %{_libdir}/pkgconfig/serf*.pc
 
 %changelog
+* Tue Aug 12 2014 Christopher Meng <rpm@cicku.me> - 1.3.7-1
+- Update to 1.3.7
+
 * Tue Jun 17 2014 Christopher Meng <rpm@cicku.me> - 1.3.6-1
 - Update to 1.3.6
 
