@@ -1,6 +1,6 @@
 Name:           libserf
-Version:        1.3.7
-Release:        3%{?dist}
+Version:        1.3.8
+Release:        1%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
 URL:            http://code.google.com/p/serf/
@@ -8,6 +8,8 @@ Source0:        http://serf.googlecode.com/svn/src_releases/serf-%{version}.tar.
 BuildRequires:  apr-devel, apr-util-devel
 BuildRequires:  krb5-devel, openssl-devel, zlib-devel
 BuildRequires:  scons, pkgconfig
+Patch1:         serf-1.3.8-testfix.patch
+Patch2:         serf-1.3.8-norpath.patch
 
 %description
 The serf library is a C-based HTTP client library built upon the Apache 
@@ -26,6 +28,8 @@ developing applications that use %{name}.
 
 %prep
 %setup -qn serf-%{version}
+%patch1 -p1 -b .testfix
+%patch2 -p1 -b .norpath
 
 # Shared library versioning support in scons is worse than awful...
 # minimally, here fix the soname to match serf-1.2.x.  Minor version
@@ -47,7 +51,8 @@ scons install --install-sandbox=%{buildroot}
 find %{buildroot} -name '*.*a' -delete -print
 
 %check
-scons %{?_smp_mflags} check || true
+# Use the libserf from $PWD
+LD_LIBRARY_PATH=$PWD scons %{?_smp_mflags} check || true
 
 %post -p /sbin/ldconfig
 
@@ -64,6 +69,10 @@ scons %{?_smp_mflags} check || true
 %{_libdir}/pkgconfig/serf*.pc
 
 %changelog
+* Tue Jun 23 2015 Joe Orton <jorton@redhat.com> - 1.3.8-1
+- update to 1.3.8 (#1155115, #1155392)
+- remove RPATHs (#1154690)
+
 * Wed Jun 17 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.3.7-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
