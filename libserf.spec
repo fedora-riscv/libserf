@@ -3,8 +3,8 @@ Version:        1.3.8
 Release:        1%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
-URL:            http://code.google.com/p/serf/
-Source0:        http://serf.googlecode.com/svn/src_releases/serf-%{version}.tar.bz2
+URL:            http://serf.apache.org/
+Source0:        https://archive.apache.org/dist/serf/serf-%{version}.tar.bz2
 BuildRequires:  apr-devel, apr-util-devel
 BuildRequires:  krb5-devel, openssl-devel, zlib-devel
 BuildRequires:  scons, pkgconfig
@@ -59,7 +59,7 @@ LD_LIBRARY_PATH=$PWD scons %{?_smp_mflags} check || true
 %postun -p /sbin/ldconfig
 
 %files
-%doc LICENSE NOTICE
+%license LICENSE NOTICE
 %{_libdir}/*.so.*
 
 %files devel
