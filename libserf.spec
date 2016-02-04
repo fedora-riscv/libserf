@@ -1,6 +1,6 @@
 Name:           libserf
 Version:        1.3.8
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
 URL:            http://serf.apache.org/
@@ -69,6 +69,9 @@ LD_LIBRARY_PATH=$PWD scons %{?_smp_mflags} check || true
 %{_libdir}/pkgconfig/serf*.pc
 
 %changelog
+* Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.3.8-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+
 * Tue Jun 23 2015 Joe Orton <jorton@redhat.com> - 1.3.8-1
 - update to 1.3.8 (#1155115, #1155392)
 - remove RPATHs (#1154690)
