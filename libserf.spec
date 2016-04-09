@@ -1,6 +1,6 @@
 Name:           libserf
 Version:        1.3.8
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
 URL:            http://serf.apache.org/
@@ -44,6 +44,7 @@ sed -i '/SHLIBVERSION/s/MAJOR/0/' SConstruct
 %build
 scons \
       CFLAGS="%{optflags}" \
+      LINKFLAGS="%{__global_ldflags}" \
       PREFIX=%{_prefix} \
       LIBDIR=%{_libdir} \
       GSSAPI=%{_prefix} \
@@ -52,7 +53,7 @@ scons \
 %install
 scons install --install-sandbox=%{buildroot}
 
-find %{buildroot} -name '*.*a' -delete -print
+find %{buildroot} -type f -name '*.a' -or -name '*.la' -delete -print
 
 %check
 # Use the libserf from $PWD
@@ -73,6 +74,9 @@ LD_LIBRARY_PATH=$PWD scons %{?_smp_mflags} check || true
 %{_libdir}/pkgconfig/serf*.pc
 
 %changelog
+* Sat Apr 09 2016 Igor Gnatenko <ignatenko@redhat.com> - 1.3.8-3
+- Add LDFLAGS provided by RPM
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.3.8-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
