@@ -5,9 +5,13 @@ Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
 URL:            http://serf.apache.org/
 Source0:        https://archive.apache.org/dist/serf/serf-%{version}.tar.bz2
-BuildRequires:  apr-devel, apr-util-devel
-BuildRequires:  krb5-devel, openssl-devel, zlib-devel
-BuildRequires:  scons, pkgconfig
+BuildRequires:  apr-devel
+BuildRequires:  apr-util-devel
+BuildRequires:  krb5-devel
+BuildRequires:  openssl-devel
+BuildRequires:  zlib-devel
+BuildRequires:  scons
+BuildRequires:  pkgconfig
 Patch1:         serf-1.3.8-testfix.patch
 Patch2:         serf-1.3.8-norpath.patch
 
