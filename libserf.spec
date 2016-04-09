@@ -53,11 +53,11 @@ scons \
 %install
 scons install --install-sandbox=%{buildroot}
 
-find %{buildroot} -type f -name '*.a' -or -name '*.la' -delete -print
+find %{buildroot}%{_libdir} -type f -name '*.*a' -delete -print
 
 %check
-# Use the libserf from $PWD
-LD_LIBRARY_PATH=$PWD scons %{?_smp_mflags} check || true
+export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
+scons %{?_smp_mflags} check || true
 
 %post -p /sbin/ldconfig
 
