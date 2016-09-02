@@ -1,6 +1,6 @@
 Name:           libserf
-Version:        1.3.8
-Release:        3%{?dist}
+Version:        1.3.9
+Release:        1%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
 URL:            http://serf.apache.org/
@@ -12,8 +12,7 @@ BuildRequires:  openssl-devel
 BuildRequires:  zlib-devel
 BuildRequires:  scons
 BuildRequires:  pkgconfig
-Patch1:         serf-1.3.8-testfix.patch
-Patch2:         serf-1.3.8-norpath.patch
+Patch0:         %{name}-norpath.patch
 
 %description
 The serf library is a C-based HTTP client library built upon the Apache 
@@ -31,9 +30,7 @@ This package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%setup -qn serf-%{version}
-%patch1 -p1 -b .testfix
-%patch2 -p1 -b .norpath
+%autosetup -n serf-%{version} -p1
 
 # Shared library versioning support in scons is worse than awful...
 # minimally, here fix the soname to match serf-1.2.x.  Minor version
@@ -74,6 +71,9 @@ scons %{?_smp_mflags} check || true
 %{_libdir}/pkgconfig/serf*.pc
 
 %changelog
+* Fri Sep 02 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 1.3.9-1
+- Update to 1.3.9 (RHBZ #1372506)
+
 * Sat Apr 09 2016 Igor Gnatenko <ignatenko@redhat.com> - 1.3.8-3
 - Add LDFLAGS provided by RPM
 
