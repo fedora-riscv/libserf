@@ -1,6 +1,6 @@
 Name:           libserf
 Version:        1.3.9
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
 URL:            http://serf.apache.org/
@@ -71,6 +71,9 @@ scons %{?_smp_mflags} check || true
 %{_libdir}/pkgconfig/serf*.pc
 
 %changelog
+* Mon Nov 14 2016 Joe Orton <jorton@redhat.com> - 1.3.9-2
+- rebuild for OpenSSL 1.1.0
+
 * Fri Sep 02 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 1.3.9-1
 - Update to 1.3.9 (RHBZ #1372506)
 
