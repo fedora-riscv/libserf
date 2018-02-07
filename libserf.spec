@@ -1,6 +1,6 @@
 Name:           libserf
 Version:        1.3.9
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
 URL:            http://serf.apache.org/
@@ -71,6 +71,9 @@ scons %{?_smp_mflags} check || true
 %{_libdir}/pkgconfig/serf*.pc
 
 %changelog
+* Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.3.9-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
 * Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.3.9-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
