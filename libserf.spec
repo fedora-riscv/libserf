@@ -1,17 +1,13 @@
 Name:           libserf
 Version:        1.3.9
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
 URL:            http://serf.apache.org/
 Source0:        https://archive.apache.org/dist/serf/serf-%{version}.tar.bz2
-BuildRequires:  apr-devel
-BuildRequires:  apr-util-devel
-BuildRequires:  krb5-devel
-BuildRequires:  openssl-devel
+BuildRequires:  gcc, scons, pkgconfig
+BuildRequires:  apr-devel, apr-util-devel, krb5-devel, openssl-devel
 BuildRequires:  zlib-devel
-BuildRequires:  scons
-BuildRequires:  pkgconfig
 Patch0:         %{name}-norpath.patch
 
 %description
@@ -71,6 +67,9 @@ scons %{?_smp_mflags} check || true
 %{_libdir}/pkgconfig/serf*.pc
 
 %changelog
+* Wed Mar  7 2018 Joe Orton <jorton@redhat.com> - 1.3.9-7
+- add gcc to BR
+
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.3.9-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
