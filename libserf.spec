@@ -17,6 +17,7 @@ BuildRequires:  gcc, %{scons_pkg}, pkgconfig
 BuildRequires:  apr-devel, apr-util-devel, krb5-devel, openssl-devel
 BuildRequires:  zlib-devel
 Patch0:         %{name}-norpath.patch
+Patch1:         %{name}-python3.patch
 
 %description
 The serf library is a C-based HTTP client library built upon the Apache 
