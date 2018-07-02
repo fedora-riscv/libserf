@@ -1,11 +1,19 @@
+%if ! 0%{?fedora}%{?rhel} || 0%{?fedora} > 28 || 0%{?rhel} > 7
+%global scons scons-3
+%global scons_pkg python3-scons
+%else
+%global scons scons-2
+%global scons_pkg python2-scons
+%endif
+
 Name:           libserf
 Version:        1.3.9
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
 URL:            http://serf.apache.org/
 Source0:        https://archive.apache.org/dist/serf/serf-%{version}.tar.bz2
-BuildRequires:  gcc, scons, pkgconfig
+BuildRequires:  gcc, %{scons_pkg}, pkgconfig
 BuildRequires:  apr-devel, apr-util-devel, krb5-devel, openssl-devel
 BuildRequires:  zlib-devel
 Patch0:         %{name}-norpath.patch
@@ -35,7 +43,7 @@ developing applications that use %{name}.
 sed -i '/SHLIBVERSION/s/MAJOR/0/' SConstruct
 
 %build
-scons \
+%{scons} \
       CFLAGS="%{optflags}" \
       LINKFLAGS="%{__global_ldflags}" \
       PREFIX=%{_prefix} \
@@ -44,13 +52,13 @@ scons \
       %{?_smp_mflags}
 
 %install
-scons install --install-sandbox=%{buildroot}
+%{scons} install --install-sandbox=%{buildroot}
 
 find %{buildroot}%{_libdir} -type f -name '*.*a' -delete -print
 
 %check
 export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
-scons %{?_smp_mflags} check || true
+%{scons} %{?_smp_mflags} check || true
 
 %post -p /sbin/ldconfig
 
@@ -67,6 +75,9 @@ scons %{?_smp_mflags} check || true
 %{_libdir}/pkgconfig/serf*.pc
 
 %changelog
+* Mon Jul 02 2018 Nils Philippsen <nils@redhat.com> - 1.3.9-8
+- use the Python 3 version of scons from Fedora 29 on
+
 * Wed Mar  7 2018 Joe Orton <jorton@redhat.com> - 1.3.9-7
 - add gcc to BR
 
