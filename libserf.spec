@@ -8,7 +8,7 @@
 
 Name:           libserf
 Version:        1.3.9
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
 URL:            http://serf.apache.org/
@@ -60,9 +60,7 @@ find %{buildroot}%{_libdir} -type f -name '*.*a' -delete -print
 export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
 %{scons} %{?_smp_mflags} check || true
 
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
+%ldconfig_scriptlets
 
 %files
 %license LICENSE NOTICE
@@ -75,6 +73,9 @@ export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
 %{_libdir}/pkgconfig/serf*.pc
 
 %changelog
+* Mon Jul 02 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 1.3.9-9
+- Switch to %%ldconfig_scriptlets
+
 * Mon Jul 02 2018 Nils Philippsen <nils@redhat.com> - 1.3.9-8
 - use the Python 3 version of scons from Fedora 29 on
 
