@@ -8,7 +8,7 @@
 
 Name:           libserf
 Version:        1.3.9
-Release:        13%{?dist}
+Release:        14%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
 URL:            http://serf.apache.org/
@@ -75,6 +75,9 @@ export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
 %{_libdir}/pkgconfig/serf*.pc
 
 %changelog
+* Thu Nov 14 2019 Joe Orton <jorton@redhat.com> - 1.3.9-14
+- revert broken IPv6 workaround
+
 * Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.3.9-13
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
