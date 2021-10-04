@@ -8,7 +8,7 @@
 
 Name:           libserf
 Version:        1.3.9
-Release:        21%{?dist}
+Release:        22%{?dist}
 Summary:        High-Performance Asynchronous HTTP Client Library
 License:        ASL 2.0
 URL:            http://serf.apache.org/
@@ -19,6 +19,7 @@ BuildRequires:  zlib-devel
 Patch0:         %{name}-norpath.patch
 Patch1:         %{name}-python3.patch
 Patch2:		%{name}-1.3.9-bio-ctrl.patch
+Patch3:         %{name}-1.3.9-errgetfunc.patch
 
 %description
 The serf library is a C-based HTTP client library built upon the Apache 
@@ -75,6 +76,9 @@ export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
 %{_libdir}/pkgconfig/serf*.pc
 
 %changelog
+* Mon Oct  4 2021 Joe Orton <jorton@redhat.com> - 1.3.9-22
+- fix build with OpenSSL 3.0
+
 * Mon Sep 20 2021 Tomas Korbar <tkorbar@redhat.com> - 1.3.9-21
 - Fix internal BIO control function
 
