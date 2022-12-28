@@ -6,6 +6,9 @@
 %global scons_pkg python2-scons
 %endif
 
+%undefine _package_note_file
+%undefine _package_note_flags
+
 Name:           libserf
 Version:        1.3.9
 Release:        24%{?dist}
@@ -46,6 +49,10 @@ developing applications that use %{name}.
 sed -i '/SHLIBVERSION/s/MAJOR/0/' SConstruct
 
 %build
+
+mkdir ../krb5-1.19.2
+touch ../krb5-1.19.2/.package_note-krb5-1.19.2-3.1.fc36.riscv64.ld
+
 %{scons} \
       CFLAGS="%{optflags}" \
       LINKFLAGS="%{__global_ldflags}" \
